@@ -1,11 +1,14 @@
 // Express.js app to serve api end points
 const express = require("express");
+require("dotenv").config();
+
 const app = express();
-const routes = require("./routes/routes");
+const routes = require("./routes/router");
 
-app.use("/", routes.home)
-app.use("/attribute", routes.attribute)
+app.use("/", routes)
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000");
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log("Listening on port " + port);
 })
