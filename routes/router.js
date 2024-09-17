@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const db = require("../db");
-const data = await db("cse-collection");
 
 // Routes
 // Home Route
@@ -12,13 +11,14 @@ router.get("/", (req, res) => {
 
 // Test Route
 router.get("/test", async (req, res) => {
+    const data = await db("cse-collection");
     const usr = await data.findOne({name: "Jacob"});
     res.json(usr);
 });
 
 router.get("/professional", async (req, res) => {
-    const usr = await data.findOne({"nameLink": {$exists: true}});
     const data = await db("w01");
+    const usr = await data.findOne({"nameLink": {$exists: true}});
     res.json(usr);
 });
 
