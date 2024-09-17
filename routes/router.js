@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const db = require("../db");
+
 // Routes
 // Home Route
 router.get("/", (req, res) => {
@@ -8,8 +10,10 @@ router.get("/", (req, res) => {
 });
 
 // Test Route
-router.get("/test", (req, res) => {
-    res.send("Test Route");
+router.get("/test", async (req, res) => {
+    const data = await db("cse-collection");
+    const usr = await data.findOne({name: "Jacob"});
+    res.json(usr);
 });
 
 // Attribute Route
