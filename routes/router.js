@@ -16,6 +16,12 @@ router.get("/test", async (req, res) => {
     res.json(usr);
 });
 
+router.get("/professional", async (req, res) => {
+    const usr = await data.findOne({"nameLink": {$exists: true}});
+    const data = await db("w01");
+    res.json(usr);
+});
+
 // Attribute Route
 router.get("/attribute", (req, res) => {
     res.send("Create by Jek");
