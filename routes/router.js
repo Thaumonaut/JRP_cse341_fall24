@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const db = require("../db");
+const data = await db("cse-collection");
 
 // Routes
 // Home Route
@@ -11,7 +12,6 @@ router.get("/", (req, res) => {
 
 // Test Route
 router.get("/test", async (req, res) => {
-    const data = await db("cse-collection");
     const usr = await data.findOne({name: "Jacob"});
     res.json(usr);
 });
